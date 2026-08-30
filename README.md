@@ -2,6 +2,8 @@
 
 一个部署在 GitHub Pages 的静态个人主页与博客，包含 Markdown 文章、项目、音乐歌词、相册和网页互动挂件。
 
+线上地址：[https://qingxpuli.github.io/](https://qingxpuli.github.io/)
+
 ## 本地运行
 
 需要 Node.js 22 或更高版本：
@@ -34,6 +36,13 @@ npm run build
 
 ## GitHub Pages
 
-仓库必须命名为 `qingxpuli.github.io`。工作流会在推送到 `main` 后运行检查、构建并发布 `out`。仓库设置中的 Pages 来源选择 **GitHub Actions**。
+仓库必须命名为 `qingxpuli.github.io`。工作流会在推送到 `main` 后运行检查、构建并发布 `out`，当前 Pages 来源已设置为 **GitHub Actions**。
 
-评论区使用 Giscus，仓库已启用 Discussions，配置使用公开的仓库与 `General` 分类 ID。首次使用前，请在 [Giscus GitHub App](https://github.com/apps/giscus/installations/new) 中将应用安装到本仓库；安装完成后，文章页会自动显示评论区。
+评论区使用 Giscus，仓库已启用 Discussions，配置如下：
+
+- 仓库：`QingXpuli/qingxpuli.github.io`
+- 仓库 ID：`R_kgDOUIxmTA`
+- 分类：`General`
+- 分类 ID：`DIC_kwDOUIxmTM4DEgmX`
+
+首次使用前，请在 [Giscus GitHub App](https://github.com/apps/giscus/installations/new) 中将应用安装到本仓库；安装完成后，文章页会自动显示评论区。

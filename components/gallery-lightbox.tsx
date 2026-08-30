@@ -1,0 +1,11 @@
+"use client";
+
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import type { GalleryPhoto } from "../content/gallery";
+
+export default function GalleryLightbox({ photos }: { photos: GalleryPhoto[] }) {
+  const [index, setIndex] = useState<number | null>(null);
+  useEffect(() => { if (index === null) return; const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setIndex(null); if (e.key === "ArrowRight") setIndex((i) => i === null ? null : (i + 1) % photos.length); if (e.key === "ArrowLeft") setIndex((i) => i === null ? null : (i - 1 + photos.length) % photos.length); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [index, photos.length]);
+  return <>{photos.map((photo, i) => <button className="focus-ring group overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--panel)] text-left" key={`${photo.src}-${i}`} onClick={() => setIndex(i)}><img className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" src={photo.src} alt={photo.alt} loading="lazy" /><span className="block p-3 text-xs text-[var(--muted)]">{photo.caption}</span></button>)}{index !== null && <div className="fixed inset-0 z-[70] flex items-center justify-center bg-[#0c1718]/90 p-5" role="dialog" aria-modal="true" aria-label="照片预览" onClick={() => setIndex(null)}><button className="focus-ring absolute right-5 top-5 rounded-full p-2 text-white" onClick={() => setIndex(null)} aria-label="关闭照片预览" title="关闭"><X /></button><button className="focus-ring absolute left-3 rounded-full p-2 text-white" onClick={(e) => { e.stopPropagation(); setIndex((index - 1 + photos.length) % photos.length); }} aria-label="上一张" title="上一张"><ChevronLeft /></button><figure className="max-h-[90vh] max-w-5xl" onClick={(e) => e.stopPropagation()}><img className="max-h-[78vh] w-auto max-w-full rounded-lg object-contain" src={photos[index].src} alt={photos[index].alt} /><figcaption className="mt-3 text-center text-sm text-white/80">{photos[index].caption} · {photos[index].date}</figcaption></figure><button className="focus-ring absolute right-3 rounded-full p-2 text-white" onClick={(e) => { e.stopPropagation(); setIndex((index + 1) % photos.length); }} aria-label="下一张" title="下一张"><ChevronRight /></button></div>}</>;
+}

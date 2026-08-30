@@ -36,4 +36,4 @@ npm run build
 
 仓库必须命名为 `qingxpuli.github.io`。工作流会在推送到 `main` 后运行检查、构建并发布 `out`。仓库设置中的 Pages 来源选择 **GitHub Actions**。
 
-Giscus 需要先在仓库设置中启用 Discussions、创建评论分类并安装 Giscus GitHub App；配置完成后再把公开的仓库与分类 ID 写入评论组件。
+评论区使用 Giscus，仓库已启用 Discussions，配置使用公开的仓库与 `General` 分类 ID。首次使用前，请在 [Giscus GitHub App](https://github.com/apps/giscus/installations/new) 中将应用安装到本仓库；安装完成后，文章页会自动显示评论区。

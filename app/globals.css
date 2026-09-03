@@ -205,6 +205,7 @@ button { cursor: pointer; }
   .site-header__inner { min-height: 3.7rem; padding: .5rem .65rem .5rem .8rem; }
   .site-brand { font-size: .7rem; letter-spacing: .05em; }
   .site-brand__mark { height: 1.8rem; width: 1.8rem; border-radius: .62rem; }
+  .site-nav { display: none; }
   .home-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; }
   .home-hero, .home-profile, .home-wide, .home-side { grid-column: auto; min-height: 0; }
   .home-hero { padding: 1.35rem; }
@@ -213,6 +214,9 @@ button { cursor: pointer; }
   .hero-copy { font-size: .9rem; line-height: 1.8; }
   .site-footer { width: min(100% - 1.25rem, 72rem); padding-bottom: 6.5rem; }
   .site-footer__row { align-items: flex-start; flex-direction: column; }
+}
+@media (min-width: 768px) {
+  .site-header__actions .header-icon-button { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }

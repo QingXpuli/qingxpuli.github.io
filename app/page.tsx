@@ -1,11 +1,85 @@
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, Camera, Music2 } from "lucide-react";
+import { ArrowUpRight, BookOpen, Camera, Code2, Github, Music2 } from "lucide-react";
+import FeaturedPost from "../components/featured-post";
 import { siteConfig } from "../content/site";
 import { projects } from "../content/projects";
 import { albums } from "../content/gallery";
+import { tracks } from "../content/music";
 import { getPosts } from "../lib/content";
 
 export default function HomePage() {
   const posts = getPosts();
-  return <div className="mx-auto max-w-6xl px-5 pb-10 pt-16 md:pt-24"><section className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]"><div className="glass rounded-lg p-7 md:p-10"><p className="text-xs uppercase tracking-[.22em] text-[var(--accent)]">A small place on the internet</p><h1 className="mt-5 max-w-xl text-4xl font-semibold tracking-tight md:text-6xl">你好，我是 {siteConfig.displayName}。</h1><p className="mt-5 max-w-lg text-base leading-8 text-[var(--muted)]">{siteConfig.bio} 这里是我的个人主页、博客、音乐和照片墙。</p><div className="mt-8 flex flex-wrap gap-3"><Link className="focus-ring rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white" href="/about/">认识我 <ArrowUpRight className="ml-1 inline" size={15} /></Link><a className="focus-ring rounded-full border border-[var(--line)] px-4 py-2 text-sm text-[var(--muted)]" href={siteConfig.github} target="_blank" rel="noreferrer">GitHub</a></div></div><div className="glass relative overflow-hidden rounded-lg p-7"><img className="absolute inset-0 h-full w-full object-cover opacity-30" src="/media/about-cover.svg" alt="" /><div className="relative flex h-full min-h-60 flex-col justify-between"><img className="h-16 w-16 rounded-full border-2 border-white/80 object-cover" src={siteConfig.avatar} alt={`${siteConfig.author} 头像`} /><div><p className="text-sm font-semibold">正在记录</p><p className="mt-2 text-sm leading-7 text-[var(--muted)]">把正在学习的东西、喜欢的旋律和还没说完的话，留在这里。</p></div></div></div></section><section className="mt-12 grid gap-5 md:grid-cols-3"><Link className="glass focus-ring rounded-lg p-5 transition hover:-translate-y-1" href="/posts/"><BookOpen className="text-[var(--accent)]" size={21} /><p className="mt-5 text-lg font-semibold">文章</p><p className="mt-2 text-sm text-[var(--muted)]">{posts.length} 篇公开记录</p></Link><Link className="glass focus-ring rounded-lg p-5 transition hover:-translate-y-1" href="/music/"><Music2 className="text-[var(--coral)]" size={21} /><p className="mt-5 text-lg font-semibold">音乐</p><p className="mt-2 text-sm text-[var(--muted)]">歌曲、歌词与正在播放</p></Link><Link className="glass focus-ring rounded-lg p-5 transition hover:-translate-y-1" href="/gallery/"><Camera className="text-[var(--accent)]" size={21} /><p className="mt-5 text-lg font-semibold">照片墙</p><p className="mt-2 text-sm text-[var(--muted)]">{albums.length} 个相册</p></Link></section><section className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr]"><div><div className="mb-5 flex items-end justify-between"><div><p className="text-xs uppercase tracking-[.2em] text-[var(--accent)]">Latest notes</p><h2 className="mt-2 text-2xl font-semibold">最近文章</h2></div><Link className="focus-ring text-xs text-[var(--muted)] hover:text-[var(--accent)]" href="/archive/">查看归档 →</Link></div><div className="space-y-3">{posts.slice(0, 3).map((post) => <Link className="glass focus-ring block rounded-lg p-4 transition hover:translate-x-1" href={`/posts/${post.slug}/`} key={post.slug}><div className="flex justify-between gap-4"><span className="font-medium">{post.title}</span><time className="shrink-0 text-xs text-[var(--muted)]">{post.date}</time></div><p className="mt-2 text-sm text-[var(--muted)]">{post.summary}</p></Link>)}</div></div><div><div className="mb-5"><p className="text-xs uppercase tracking-[.2em] text-[var(--coral)]">Selected work</p><h2 className="mt-2 text-2xl font-semibold">精选项目</h2></div><div className="grid gap-3 sm:grid-cols-2">{projects.map((project) => <Link className="glass focus-ring overflow-hidden rounded-lg" href="/projects/" key={project.title}><img className="aspect-[16/9] w-full object-cover" src={project.cover} alt="" /><div className="p-4"><p className="font-medium">{project.title}</p><p className="mt-1 text-xs leading-5 text-[var(--muted)]">{project.summary}</p></div></Link>)}</div></div></section></div>;
+  const photos = albums.flatMap((album) => album.photos).slice(0, 3);
+  const featuredProjects = projects.filter((project) => project.featured).slice(0, 2);
+  const track = tracks[0];
+  return <div className="page-wrap pb-20 pt-24 md:pt-28">
+    <section className="home-grid">
+      <article className="glass home-card home-hero">
+        <p className="eyebrow">A small place on the internet</p>
+        <h1 className="hero-title">你好，我是 {siteConfig.displayName}。</h1>
+        <p className="hero-copy">{siteConfig.bio}</p>
+        <div className="hero-actions">
+          <Link className="button-primary focus-ring" href="/about/">认识我 <ArrowUpRight size={15} /></Link>
+          <a className="button-secondary focus-ring" href={siteConfig.github} target="_blank" rel="noreferrer"><Github size={15} /> GitHub</a>
+        </div>
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[.7rem] text-[var(--muted)]">
+          <span className="inline-flex items-center gap-1.5"><BookOpen size={14} className="text-[var(--accent)]" />持续记录</span>
+          <span className="inline-flex items-center gap-1.5"><Music2 size={14} className="text-[var(--coral)]" />正在听歌</span>
+          <span className="inline-flex items-center gap-1.5"><Camera size={14} className="text-[var(--accent)]" />收集片段</span>
+        </div>
+      </article>
+
+      <aside className="glass home-card home-profile">
+        <div className="profile-art">
+          <img src="/media/about-cover.svg" alt="" />
+          <span className="profile-art__badge">OPEN TO IDEAS</span>
+        </div>
+        <div className="mt-5 flex items-center gap-3">
+          <img className="h-12 w-12 rounded-2xl border-2 border-white/70 object-cover" src={siteConfig.avatar} alt={`${siteConfig.author} 头像`} />
+          <div><p className="font-semibold">{siteConfig.author}</p><p className="mt-1 text-xs text-[var(--muted)]">学习者 · 制作者 · 记录者</p></div>
+        </div>
+        <div className="stat-grid">
+          <div className="stat"><strong>{posts.length}</strong><span>文章</span></div>
+          <div className="stat"><strong>{photos.length}</strong><span>照片</span></div>
+          <div className="stat"><strong>{projects.length}</strong><span>项目</span></div>
+        </div>
+      </aside>
+
+      <section className="home-wide">
+        <div className="section-heading"><div><p className="eyebrow">Selected note</p><h2>精选文章</h2></div><Link className="section-link focus-ring" href="/posts/">全部文章 <ArrowUpRight className="inline" size={14} /></Link></div>
+        <FeaturedPost posts={posts} />
+      </section>
+
+      <section className="home-side">
+        <div className="section-heading"><div><p className="eyebrow" style={{ color: "var(--coral)" }}>Small scenes</p><h2>照片墙</h2></div><Link className="section-link focus-ring" href="/gallery/">查看相册 <ArrowUpRight className="inline" size={14} /></Link></div>
+        <div className="glass home-card p-4">
+          <div className="photo-strip">{photos.map((photo) => <Link className="photo-tile focus-ring" href="/gallery/" key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /></Link>)}</div>
+          <p className="mt-4 text-xs leading-6 text-[var(--muted)]">把日常里值得回看的光线、桌面和街角收集起来。</p>
+        </div>
+      </section>
+
+      <section className="home-wide">
+        <div className="section-heading"><div><p className="eyebrow">Latest notes</p><h2>最近文章</h2></div><Link className="section-link focus-ring" href="/archive/">查看归档 <ArrowUpRight className="inline" size={14} /></Link></div>
+        <div className="home-list">{posts.slice(0, 4).map((post) => <Link className="home-list__item focus-ring" href={`/posts/${post.slug}/`} key={post.slug}><p>{post.title}</p><time dateTime={post.date}>{post.date}</time></Link>)}</div>
+      </section>
+
+      <section className="home-side">
+        <div className="section-heading"><div><p className="eyebrow" style={{ color: "var(--coral)" }}>Soundtrack</p><h2>正在播放</h2></div><Link className="section-link focus-ring" href="/music/">打开音乐页 <ArrowUpRight className="inline" size={14} /></Link></div>
+        <Link className="glass home-card flex items-center gap-4 p-4 transition hover:-translate-y-1" href="/music/">
+          <img className="h-20 w-20 rounded-2xl object-cover" src={track.cover} alt="" />
+          <div className="min-w-0"><p className="eyebrow" style={{ color: "var(--coral)" }}>First signal</p><h3 className="mt-2 truncate font-semibold">{track.title}</h3><p className="mt-1 truncate text-xs text-[var(--muted)]">{track.artist}</p><p className="mt-3 text-xs text-[var(--muted)]">歌词、进度和播放状态都在音乐页。</p></div>
+        </Link>
+      </section>
+
+      <section className="home-wide">
+        <div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>精选项目</h2></div><Link className="section-link focus-ring" href="/projects/">全部项目 <ArrowUpRight className="inline" size={14} /></Link></div>
+        <div className="grid gap-3 sm:grid-cols-2">{featuredProjects.map((project) => <Link className="glass home-card project-tile focus-ring" href={project.demoUrl ?? project.repoUrl} target={project.demoUrl ? undefined : "_blank"} rel={project.demoUrl ? undefined : "noreferrer"} key={project.title}><img src={project.cover} alt="" /><div className="project-tile__body"><div className="flex items-center justify-between gap-3"><h3>{project.title}</h3><Code2 size={15} className="shrink-0 text-[var(--accent)]" /></div><p>{project.summary}</p></div></Link>)}</div>
+      </section>
+
+      <section className="home-side">
+        <div className="section-heading"><div><p className="eyebrow" style={{ color: "var(--coral)" }}>Around the web</p><h2>友情链接</h2></div></div>
+        <div className="grid gap-2">{siteConfig.friends.map((friend) => <a className="friend-link focus-ring" href={friend.url} target="_blank" rel="noreferrer" key={friend.url}><span><strong className="block text-[var(--ink)]">{friend.name}</strong><small className="mt-1 block text-[.66rem]">{friend.description}</small></span><ArrowUpRight size={15} /></a>)}</div>
+      </section>
+    </section>
+  </div>;
 }

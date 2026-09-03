@@ -1,13 +1,17 @@
 "use client";
 
 import { Heart, Sparkles } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const messages = ["今天也留下了一点什么。", "慢慢来，页面会长出来。", "欢迎回来。", "这段旋律很适合现在。"];
 
 export default function Companion() {
+  const pathname = usePathname();
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(true);
+  if (pathname === "/music" || pathname === "/music/") return null;
+
   return <div className={`fixed bottom-5 right-5 z-40 flex items-end gap-2 ${open ? "" : "translate-x-2"}`}>
     {open && message && <div className="glass max-w-48 rounded-lg px-3 py-2 text-xs text-[var(--muted)] shadow-lg" role="status">{message}</div>}
     <button className="focus-ring group relative h-14 w-14 rounded-full border border-white/70 bg-[var(--accent-soft)] shadow-lg transition hover:-translate-y-1 dark:border-white/10" onClick={() => { setMessage(messages[Math.floor(Math.random() * messages.length)]); }} aria-label="互动挂件" title="互动挂件">

@@ -8,6 +8,7 @@ import ThemeToggle from "./theme-toggle";
 import Companion from "./companion";
 import MiniPlayer from "./mini-player";
 import BackgroundStage from "./background-stage";
+import ClickFeedback from "./click-feedback";
 import { MusicProvider } from "./music-context";
 import { siteConfig } from "../content/site";
 
@@ -35,9 +36,10 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href.replace(/\/$/, ""));
 
   return <MusicProvider>
-    <div className="site-bg min-h-screen">
-      <BackgroundStage />
-      <div className="site-content">
+    <ClickFeedback>
+      <div className="site-bg min-h-screen">
+        <BackgroundStage />
+        <div className="site-content">
         <header className="site-header">
           <div className="site-header__inner">
             <Link href="/" className="site-brand focus-ring" aria-label="返回首页">
@@ -84,7 +86,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         </footer>
         <MiniPlayer />
         <Companion />
+        </div>
       </div>
-    </div>
+    </ClickFeedback>
   </MusicProvider>;
 }

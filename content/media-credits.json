@@ -1,0 +1,98 @@
+[
+  {
+    "kind": "image",
+    "path": "/media/about-cover.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/gallery-1.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/gallery-2.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/gallery-3.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/gallery-4.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/music-cover.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/post-cover.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/project-codex.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "/media/project-lyric.svg",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "audio",
+    "path": "/audio/demo.wav",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "lyrics",
+    "path": "/audio/demo.lrc",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "QingXpuli original placeholder; replace before production."
+  },
+  {
+    "kind": "image",
+    "path": "https://github.com/QingXpuli.png?size=192",
+    "author": "QingXpuli",
+    "license": "GitHub avatar supplied by account owner",
+    "sourceUrl": "https://github.com/QingXpuli",
+    "attribution": "QingXpuli GitHub profile avatar."
+  }
+]

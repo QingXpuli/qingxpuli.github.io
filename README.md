@@ -29,10 +29,15 @@ npm run build
 - 项目编辑 `content/projects.ts`。
 - 相册编辑 `content/gallery.ts`，图片放在 `public/media/`。
 - 音乐编辑 `content/music.ts`，音频和 LRC 放在 `public/audio/`。
+- 媒体授权登记编辑 `content/media-credits.json`；`npm run verify:media` 会检查每个公开媒体是否登记且文件存在。
 - 个人信息编辑 `content/site.ts` 与 `content/about.md`。
 - 互动挂件文案编辑 `components/companion.tsx`。
 
 音频请只使用你有合法使用权的文件。网易云主页链接仅用于来源说明和跳转，不使用非官方 API 抓取或代理音频。
+
+当前 SVG、WAV 和 LRC 是 QingXpuli 的演示占位素材。替换为真实内容时，必须同步更新 `content/media-credits.json`，记录作者、许可证、来源和署名信息；没有明确使用权的资源不得发布。
+
+视觉实现参考了沉浸式个人空间的公开设计方向，但本仓库不复制参考站点的源码、图片、文案、字体或品牌元素。歌词同步行为为独立实现，不直接复制 GPL 项目代码。
 
 ## GitHub Pages
 

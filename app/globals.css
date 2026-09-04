@@ -92,6 +92,16 @@ button { cursor: pointer; }
   mix-blend-mode: soft-light;
 }
 
+.click-feedback {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.click-feedback-host { position: relative; min-height: 100vh; }
+.click-feedback canvas { display: block; height: 100%; width: 100%; }
+
 .glass {
   background: var(--panel);
   border: 1px solid rgba(255,255,255,.58);

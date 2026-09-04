@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run verify:media",
     "build": "next build",
+    "verify:media": "node tools/verify-media-credits.mjs",
     "postbuild": "node tools/prepare-pages.mjs",
     "start": "next start",
     "lint": "eslint",

@@ -19,13 +19,18 @@ export type Post = {
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) return value.toISOString().slice(0, 10);
+  return String(value ?? "1970-01-01");
+}
+
 function readPost(filename: string): Post {
   const raw = fs.readFileSync(path.join(postsDirectory, filename), "utf8");
   const { data, content } = matter(raw);
   return {
     slug: filename.replace(/\.md$/, ""),
     title: String(data.title ?? filename.replace(/\.md$/, "")),
-    date: String(data.date ?? "1970-01-01"),
+    date: normalizeDate(data.date),
     summary: String(data.summary ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     cover: data.cover ? String(data.cover) : undefined,

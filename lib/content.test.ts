@@ -19,5 +19,6 @@ describe("post content", () => {
     const posts = getPosts();
     expect(posts.length).toBeGreaterThan(0);
     expect(posts.every((post) => post.draft === false)).toBe(true);
+    expect(posts.every((post) => /^\d{4}-\d{2}-\d{2}$/.test(post.date))).toBe(true);
   });
 });

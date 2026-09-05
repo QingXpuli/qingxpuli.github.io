@@ -16,7 +16,7 @@ export default function MusicPage() {
 
   return <div className="grid gap-5 lg:grid-cols-[minmax(280px,380px)_1fr]">
     <section className="glass home-card p-5 md:p-6">
-      <div className="mx-auto aspect-square max-w-[280px] overflow-hidden rounded-[1.25rem] border border-white/60 shadow-xl">
+      <div className="mx-auto aspect-square max-w-[280px] overflow-hidden rounded-lg border border-white/60 shadow-xl">
         <img className={`h-full w-full object-cover ${playing ? "animate-[spin_24s_linear_infinite]" : ""}`} src={current.cover} alt={`${current.title} 封面`} />
       </div>
       <p className="mt-6 text-center eyebrow" style={{ color: "var(--coral)" }}>Now playing</p>

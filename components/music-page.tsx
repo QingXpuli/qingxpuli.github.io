@@ -20,9 +20,9 @@ export default function MusicPage() {
 function DesktopMusicRoom() {
   const [selected, setSelected] = useState(0);
   const [panel, setPanel] = useState("playlist");
-  const { pause } = useMusic();
+  const { tracks, currentIndex, currentTime, duration, playing, lyrics, lyricIndex, audioStatus, play, pause, seek } = useMusic();
   const song = musicLinks[selected];
-  useEffect(() => { pause(); }, [pause]);
+  const localTrack = tracks[currentIndex];
   const choose = (index: number) => { pause(); setSelected((index + musicLinks.length) % musicLinks.length); };
   return <section className="glass home-card p-8" aria-label="音乐欣赏">
     <header className="mb-8 border-b border-[var(--line)] pb-6">
@@ -35,7 +35,7 @@ function DesktopMusicRoom() {
         <div aria-hidden="true" className="mx-auto grid h-56 w-56 place-items-center rounded-full border-8 border-[var(--accent-soft)] bg-[var(--accent)] shadow-lg">
           <span className="grid h-20 w-20 place-items-center rounded-full bg-[var(--panel)] text-3xl text-[var(--accent)]">♪</span>
         </div>
-        <p className="eyebrow mt-6">Selected track</p>
+        <p className="eyebrow mt-6">网易云官方播放器</p>
         <h2 className="mt-2 text-xl font-semibold">{song.title}</h2>
         <p className="mt-2 text-sm text-[var(--muted)]">{song.artist}</p>
         <iframe key={song.id} className="mx-auto mt-6 h-[86px] w-[330px] max-w-full border-0" width={330} height={86} title={`网易云官方播放器：${song.title}`} src={`https://music.163.com/outchain/player?type=2&id=${song.id}&auto=0&height=66`} allow="autoplay" />
@@ -45,7 +45,14 @@ function DesktopMusicRoom() {
           <button className="focus-ring rounded-lg p-2" onClick={() => choose(selected + 1)} aria-label="选择下一首"><SkipForward size={20} /></button>
         </div>
         <a className="focus-ring mt-4 inline-block text-sm text-[var(--accent)] underline" href={song.url} target="_blank" rel="noopener noreferrer">在网易云打开 ↗</a>
-        <p className="mt-4 text-xs leading-6 text-[var(--muted)]">请点击官方播放器播放。若受版权、地区或浏览器限制无法播放，可使用上方官方链接。本站不托管音频。</p>
+        <div className="mt-5 rounded-lg border border-[var(--line)] bg-[var(--accent-soft)] p-4 text-left">
+          <p className="text-xs font-semibold text-[var(--accent)]">本站可同步音频</p>
+          <p className="mt-1 text-xs text-[var(--muted)]">{localTrack.title} · {localTrack.artist}</p>
+          <div className="mt-3 flex items-center gap-2"><button className="focus-ring rounded-lg bg-[var(--accent)] px-3 py-2 text-xs text-white" onClick={playing ? pause : play}>{playing ? "暂停" : "播放"}</button><input className="min-w-0 flex-1 accent-[var(--accent)]" type="range" min="0" max={duration || 1} step="0.1" value={Math.min(currentTime, duration || 1)} onChange={(event) => seek(Number(event.target.value))} aria-label="本地音频进度" /></div>
+          <div className="mt-1 flex justify-between text-[10px] text-[var(--muted)]"><span>{format(currentTime)}</span><span>{format(duration)}</span></div>
+          <div className="mt-3 max-h-32 overflow-y-auto text-center">{lyrics.map((line, index) => <button key={`${line.time}-${index}`} onClick={() => seek(line.time)} className={`focus-ring block w-full py-1 text-xs ${index === lyricIndex ? "font-semibold text-[var(--accent)]" : "text-[var(--muted)] opacity-70"}`}>{line.text}</button>)}</div>
+        </div>
+        <p className="mt-4 text-xs leading-6 text-[var(--muted)]">网易云播放器只负责官方歌曲播放；本站同步歌词使用本站可控的演示音频时间轴，不与跨域 iframe 的播放进度混用。</p>
       </div>
       <div className="min-w-0">
         <div className="flex gap-3 border-b border-[var(--line)] pb-4" aria-label="音乐面板">

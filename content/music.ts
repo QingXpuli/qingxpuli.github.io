@@ -9,6 +9,13 @@ export type Track = {
   note: string;
 };
 
+// Official song-page links only; these entries are not local audio tracks.
+export const musicLinks = [
+  { id: "29777821", title: "This Will Be the Day (Acoustic)", artist: "Jeff Williams, Casey Lee Williams", url: "https://music.163.com/#/song?id=29777821" },
+  { id: "672188", title: "You", artist: "雪野五月", url: "https://music.163.com/#/song?id=672188" },
+  { id: "484365652", title: "Home (feat. Casey Lee Williams)", artist: "Jeff Williams, Casey Lee Williams", url: "https://music.163.com/#/song?id=484365652" }
+] as const;
+
 export const tracks: Track[] = [
   {
     id: "first-signal",

@@ -3,6 +3,7 @@
 import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useMusic } from "./music-context";
+import { musicLinks } from "../content/music";
 
 export default function MusicPage() {
   const { tracks, currentIndex, currentTime, duration, progress, playing, lyrics, lyricIndex, audioStatus, play, pause, next, previous, select, seek } = useMusic();
@@ -39,6 +40,20 @@ export default function MusicPage() {
         {lyrics.length ? lyrics.map((line, index) => <button data-lyric-index={index} key={`${line.time}-${index}`} onClick={() => seek(line.time)} className={`focus-ring block w-full break-words px-3 py-2 text-sm transition ${index === lyricIndex ? "scale-[1.03] font-semibold text-[var(--accent)]" : "text-[var(--muted)] opacity-60 hover:opacity-100"}`} aria-current={index === lyricIndex ? "true" : undefined}>{line.text}</button>) : <p className="text-sm text-[var(--muted)]">这首歌还没有 LRC，添加文件后会自动显示。</p>}
       </div>
       <div className="mt-4 border-t border-[var(--line)] pt-4"><p className="mb-2 text-xs text-[var(--muted)]">歌单</p>{tracks.map((track, index) => <button className={`focus-ring flex w-full items-center justify-between gap-3 border-b border-[var(--line)] py-3 text-left text-sm ${index === currentIndex ? "text-[var(--accent)]" : "text-[var(--muted)]"}`} key={track.id} onClick={() => select(index)}><span className="truncate">{track.title}</span><span className="shrink-0 text-xs">{track.artist}</span></button>)}</div>
+    </section>
+    <section className="glass home-card p-5 md:p-6 lg:col-span-2" aria-labelledby="music-links-title">
+      <p className="eyebrow">Music bookmarks</p>
+      <h2 id="music-links-title" className="mt-1 text-lg font-semibold">网易云收藏</h2>
+      <p className="mt-2 text-sm text-[var(--muted)]">以下歌曲仅提供官方页面链接，点击后在网易云打开，不在本站播放或托管音频。</p>
+      <ul className="mt-4 divide-y divide-[var(--line)]">
+        {musicLinks.map((song) => <li key={song.id} className="py-4">
+          <a className="focus-ring block text-[var(--accent)]" href={song.url} target="_blank" rel="noopener noreferrer" aria-label={`${song.title}，在网易云打开（新窗口）`}>
+            <strong className="block break-words">{song.title}</strong>
+            <span className="mt-1 block text-sm text-[var(--muted)]">{song.artist}</span>
+            <span className="mt-2 block text-xs underline underline-offset-4">在网易云打开 ↗</span>
+          </a>
+        </li>)}
+      </ul>
     </section>
   </div>;
 }

@@ -49,7 +49,7 @@ export default function MusicPage() {
         {musicLinks.map((song) => <li className="border-b border-[var(--line)] pb-4" key={song.id}>
           <strong className="block break-words text-[var(--accent)]">{song.title}</strong>
           <span className="mt-1 block text-sm text-[var(--muted)]">{song.artist}</span>
-          <iframe className="mt-3 h-[86px] w-full border-0" title={`网易云官方播放器：${song.title}`} src={`https://music.163.com/outchain/player?type=2&id=${song.id}&auto=0&height=66`} loading="lazy" allow="autoplay" />
+          <iframe className="mt-3 h-[86px] w-full border-0" title={`网易云官方播放器：${song.title}`} src={`https://music.163.com/outchain/player?type=2&id=${song.id}&auto=1&height=66`} loading="lazy" allow="autoplay" />
           <a className="focus-ring mt-2 inline-block text-xs text-[var(--accent)] underline underline-offset-4" href={song.url} target="_blank" rel="noopener noreferrer" aria-label={`${song.title}，在网易云打开（新窗口）`}>在网易云打开 ↗</a>
         </li>)}
       </ul>

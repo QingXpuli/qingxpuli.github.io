@@ -1,11 +1,68 @@
 "use client";
 
 import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMusic } from "./music-context";
 import { musicLinks } from "../content/music";
 
 export default function MusicPage() {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setDesktop(query.matches);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+  return desktop ? <DesktopMusicRoom /> : <ExistingMusicPage />;
+}
+
+function DesktopMusicRoom() {
+  const [selected, setSelected] = useState(0);
+  const [panel, setPanel] = useState("playlist");
+  const { pause } = useMusic();
+  const song = musicLinks[selected];
+  useEffect(() => { pause(); }, [pause]);
+  const choose = (index: number) => { pause(); setSelected((index + musicLinks.length) % musicLinks.length); };
+  return <section className="glass home-card p-8" aria-label="音乐欣赏">
+    <header className="mb-8 border-b border-[var(--line)] pb-6">
+      <p className="eyebrow">Music room</p>
+      <h1 className="mt-2 text-3xl font-semibold">音乐欣赏</h1>
+      <p className="mt-3 text-sm text-[var(--muted)]">喜欢的旋律，留在这里慢慢听。</p>
+    </header>
+    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10">
+      <div className="min-w-0 text-center">
+        <div aria-hidden="true" className="mx-auto grid h-56 w-56 place-items-center rounded-full border-8 border-[var(--accent-soft)] bg-[var(--accent)] shadow-lg">
+          <span className="grid h-20 w-20 place-items-center rounded-full bg-[var(--panel)] text-3xl text-[var(--accent)]">♪</span>
+        </div>
+        <p className="eyebrow mt-6">Selected track</p>
+        <h2 className="mt-2 text-xl font-semibold">{song.title}</h2>
+        <p className="mt-2 text-sm text-[var(--muted)]">{song.artist}</p>
+        <iframe key={song.id} className="mx-auto mt-6 h-[86px] w-[330px] max-w-full border-0" width={330} height={86} title={`网易云官方播放器：${song.title}`} src={`https://music.163.com/outchain/player?type=2&id=${song.id}&auto=0&height=66`} allow="autoplay" />
+        <div className="mt-4 flex justify-center gap-6">
+          <button className="focus-ring rounded-lg p-2" onClick={() => choose(selected - 1)} aria-label="选择上一首"><SkipBack size={20} /></button>
+          <button className="focus-ring rounded-lg px-3 text-sm" onClick={() => choose(selected + 1 + Math.floor(Math.random() * (musicLinks.length - 1)))}>随机选曲</button>
+          <button className="focus-ring rounded-lg p-2" onClick={() => choose(selected + 1)} aria-label="选择下一首"><SkipForward size={20} /></button>
+        </div>
+        <a className="focus-ring mt-4 inline-block text-sm text-[var(--accent)] underline" href={song.url} target="_blank" rel="noopener noreferrer">在网易云打开 ↗</a>
+        <p className="mt-4 text-xs leading-6 text-[var(--muted)]">请点击官方播放器播放。若受版权、地区或浏览器限制无法播放，可使用上方官方链接。本站不托管音频。</p>
+      </div>
+      <div className="min-w-0">
+        <div className="flex gap-3 border-b border-[var(--line)] pb-4" aria-label="音乐面板">
+          <button className="focus-ring rounded-lg px-4 py-2" aria-pressed={panel === "playlist"} onClick={() => setPanel("playlist")}>歌单 · {musicLinks.length}</button>
+          <button className="focus-ring rounded-lg px-4 py-2" aria-pressed={panel === "lyrics"} onClick={() => setPanel("lyrics")}>歌词说明</button>
+        </div>
+        {panel === "playlist" ? <ol className="mt-4 space-y-3">{musicLinks.map((item, index) => <li key={item.id}>
+          <button className={`focus-ring flex w-full items-center gap-4 rounded-lg border border-[var(--line)] p-5 text-left ${selected === index ? "bg-[var(--accent-soft)] text-[var(--accent)]" : "hover:bg-[var(--accent-soft)]"}`} aria-pressed={selected === index} onClick={() => choose(index)}>
+            <span className="text-xs">{String(index + 1).padStart(2, "0")}</span><span className="min-w-0"><strong className="block break-words">{item.title}</strong><span className="mt-2 block text-xs text-[var(--muted)]">{item.artist}</span></span>
+          </button>
+        </li>)}</ol> : <p className="py-12 text-sm leading-7 text-[var(--muted)]">官方嵌入播放器未向本站提供同步歌词与播放进度接口，因此这里不展示模拟歌词或虚假进度。请在网易云官方页面查看歌词。</p>}
+      </div>
+    </div>
+  </section>;
+}
+
+function ExistingMusicPage() {
   const { tracks, currentIndex, currentTime, duration, progress, playing, lyrics, lyricIndex, audioStatus, play, pause, next, previous, select, seek } = useMusic();
   const current = tracks[currentIndex];
   const lyricViewport = useRef<HTMLDivElement>(null);

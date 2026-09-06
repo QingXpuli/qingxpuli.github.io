@@ -1,15 +1,18 @@
 export const siteConfig = {
-  title: "QingXpuli の小窝",
-  author: "QingXpuli",
+  title: "QingXpuli 的小窝",
+  author: "Qing",
   displayName: "QingXpuli",
-  bio: "记录学习、项目、音乐与日常灵感，把正在发生的事留在一个可以再次访问的地方。",
-  avatar: "https://github.com/QingXpuli.png?size=192",
+  bio: "喜欢做网页、写代码，也记录生活中的小片段。",
+  avatar: "/media/avatar.png",
   github: "https://github.com/QingXpuli",
+  bilibili: "https://space.bilibili.com/3546773169637968?spm_id_from=333.1007.0.0",
+  qq: "1932992167",
+  blog: "https://qingxpuli.github.io/",
   email: "",
-  footer: "把值得记住的片段，整理成可以再次访问的地方。",
+  footer: "把值得记住的片段留下来。",
   friends: [
-    { name: "星梦幽灵の小窝", description: "毛玻璃个人空间参考", url: "https://xmyl-153.github.io/xingmengyouling-blog/" },
-    { name: "LimbusLyricSimulator", description: "歌词演出与同步灵感", url: "https://github.com/YouRanCoder/LimbusLyricSimulator" },
-    { name: "heiehiehi", description: "个人主页与开源项目", url: "https://github.com/heiehiehi" }
+    { name: "个人博客", description: "QingXpuli 的线上小窝", url: "https://qingxpuli.github.io/" },
+    { name: "Bilibili", description: "视频与日常分享", url: "https://space.bilibili.com/3546773169637968?spm_id_from=333.1007.0.0" },
+    { name: "LimbusLyricSimulator", description: "歌词演出与同步灵感", url: "https://github.com/YouRanCoder/LimbusLyricSimulator" }
   ]
 } as const;

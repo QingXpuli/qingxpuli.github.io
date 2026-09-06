@@ -44,14 +44,13 @@ export default function MusicPage() {
     <section className="glass home-card p-5 md:p-6 lg:col-span-2" aria-labelledby="music-links-title">
       <p className="eyebrow">Music bookmarks</p>
       <h2 id="music-links-title" className="mt-1 text-lg font-semibold">网易云收藏</h2>
-      <p className="mt-2 text-sm text-[var(--muted)]">以下歌曲仅提供官方页面链接，点击后在网易云打开，不在本站播放或托管音频。</p>
-      <ul className="mt-4 divide-y divide-[var(--line)]">
-        {musicLinks.map((song) => <li key={song.id} className="py-4">
-          <a className="focus-ring block text-[var(--accent)]" href={song.url} target="_blank" rel="noopener noreferrer" aria-label={`${song.title}，在网易云打开（新窗口）`}>
-            <strong className="block break-words">{song.title}</strong>
-            <span className="mt-1 block text-sm text-[var(--muted)]">{song.artist}</span>
-            <span className="mt-2 block text-xs underline underline-offset-4">在网易云打开 ↗</span>
-          </a>
+      <p className="mt-2 text-sm text-[var(--muted)]">使用网易云官方外链播放器；本站不托管、不代理商业音频。</p>
+      <ul className="mt-4 grid gap-4 md:grid-cols-2">
+        {musicLinks.map((song) => <li className="border-b border-[var(--line)] pb-4" key={song.id}>
+          <strong className="block break-words text-[var(--accent)]">{song.title}</strong>
+          <span className="mt-1 block text-sm text-[var(--muted)]">{song.artist}</span>
+          <iframe className="mt-3 h-[86px] w-full border-0" title={`网易云官方播放器：${song.title}`} src={`https://music.163.com/outchain/player?type=2&id=${song.id}&auto=0&height=66`} loading="lazy" allow="autoplay" />
+          <a className="focus-ring mt-2 inline-block text-xs text-[var(--accent)] underline underline-offset-4" href={song.url} target="_blank" rel="noopener noreferrer" aria-label={`${song.title}，在网易云打开（新窗口）`}>在网易云打开 ↗</a>
         </li>)}
       </ul>
     </section>

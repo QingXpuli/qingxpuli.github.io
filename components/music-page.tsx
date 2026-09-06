@@ -66,6 +66,21 @@ function DesktopMusicRoom() {
         </li>)}</ol> : <p className="py-12 text-sm leading-7 text-[var(--muted)]">官方嵌入播放器未向本站提供同步歌词与播放进度接口，因此这里不展示模拟歌词或虚假进度。请在网易云官方页面查看歌词。</p>}
       </div>
     </div>
+    <LyricStage lyrics={lyrics} lyricIndex={lyricIndex} currentTime={currentTime} />
+  </section>;
+}
+
+function LyricStage({ lyrics, lyricIndex, currentTime }: { lyrics: { time: number; text: string }[]; lyricIndex: number; currentTime: number }) {
+  const active = lyricIndex >= 0 ? lyrics[lyricIndex] : undefined;
+  const next = lyricIndex >= 0 ? lyrics[lyricIndex + 1] : lyrics[0];
+  const progress = active && next ? Math.max(0, Math.min(1, (currentTime - active.time) / Math.max(0.1, next.time - active.time))) : 0;
+  return <section className="mt-10 rounded-lg border border-[var(--line)] bg-[var(--panel)]/60 p-8 text-center" aria-label="歌词舞台">
+    <div className="flex items-center justify-between text-xs text-[var(--muted)]"><span>Lyric stage</span><span>{lyrics.length ? "跟随本站音频" : "暂无歌词"}</span></div>
+    {active ? <div className="mx-auto mt-8 min-h-28 max-w-3xl" aria-live="polite">
+      <p className="text-2xl font-semibold tracking-wide text-[var(--accent)] transition-all duration-300">{active.text}</p>
+      <div className="mx-auto mt-6 h-1 max-w-md overflow-hidden rounded-full bg-[var(--accent-soft)]"><div className="h-full origin-left rounded-full bg-[var(--accent)] transition-transform duration-150" style={{ transform: `scaleX(${progress})` }} /></div>
+      {next && <p className="mt-5 text-sm text-[var(--muted)] opacity-60">{next.text}</p>}
+    </div> : <p className="py-10 text-sm text-[var(--muted)]">播放本站可同步音频后，歌词会根据真实播放时间高亮。</p>}
   </section>;
 }
 

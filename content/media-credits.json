@@ -5,7 +5,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -13,7 +14,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -21,7 +23,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -29,7 +32,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -37,175 +41,197 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
-    "path": "/media/avatar.png",
+    "path": "/media/avatar.webp",
     "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local file supplied by Qing",
-    "attribution": "Qing-provided avatar."
+    "license": "站点所有者本人提供并授权发布的个人头像",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "Qing 本人头像，版权归站点所有者所有。",
+    "rights": "owned"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-01.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-01.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-02.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-02.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-group.png",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-group.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lumingfei.png",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lumingfei.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-03.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-03.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-04.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-04.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-01.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-01.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-02.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-02.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-03.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-03.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-04.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-04.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-05.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-05.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-06.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-06.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-07.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-07.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-08.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-08.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-09.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-09.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-10.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-10.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz2-11.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz2-11.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz3-01.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz3-01.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz3-02.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz3-02.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
-    "path": "/media/gallery/comic-lz3-03.jpg",
-    "author": "Qing",
-    "license": "User-provided image; publication authorized by account owner",
-    "sourceUrl": "local folder supplied by Qing",
-    "attribution": "Qing-provided gallery image."
+    "path": "/media/gallery/comic-lz3-03.webp",
+    "author": "第三方漫画素材（权利方未标注）",
+    "license": "站点所有者确认持有公开发布权；版权归原作者所有",
+    "sourceUrl": "由站点所有者本地提供",
+    "attribution": "图片版权归原作者所有，仅作个人收藏展示。",
+    "rights": "authorized"
   },
   {
     "kind": "image",
@@ -213,7 +239,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -221,7 +248,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -229,7 +257,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "image",
@@ -237,7 +266,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "audio",
@@ -245,7 +275,8 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
   },
   {
     "kind": "lyrics",
@@ -253,6 +284,16 @@
     "author": "QingXpuli",
     "license": "Original demo asset",
     "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
-    "attribution": "QingXpuli original placeholder."
+    "attribution": "QingXpuli original placeholder.",
+    "rights": "original"
+  },
+  {
+    "kind": "image",
+    "path": "/media/og-default.png",
+    "author": "QingXpuli",
+    "license": "Original demo asset",
+    "sourceUrl": "https://github.com/QingXpuli/qingxpuli.github.io",
+    "attribution": "由仓库内原创 about-cover.svg 渲染的 Open Graph 默认封面。",
+    "rights": "original"
   }
 ]

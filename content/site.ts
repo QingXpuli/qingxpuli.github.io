@@ -3,7 +3,7 @@ export const siteConfig = {
   author: "Qing",
   displayName: "QingXpuli",
   bio: "喜欢做网页、写代码，也记录生活中的小片段。",
-  avatar: "/media/avatar.png",
+  avatar: "/media/avatar.webp",
   github: "https://github.com/QingXpuli",
   bilibili: "https://space.bilibili.com/3546773169637968?spm_id_from=333.1007.0.0",
   qq: "1932992167",

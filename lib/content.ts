@@ -2,9 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { unified } from "unified";
+import type { Plugin } from "unified";
+import type { Root } from "hast";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeSlug from "rehype-slug";
+import rehypeHighlight from "rehype-highlight";
+import rehypeStringify from "rehype-stringify";
 
 export type Post = {
   slug: string;
@@ -15,6 +20,17 @@ export type Post = {
   cover?: string;
   draft: boolean;
   content: string;
+};
+
+export type Heading = {
+  depth: 2 | 3;
+  id: string;
+  text: string;
+};
+
+export type RenderedMarkdown = {
+  html: string;
+  headings: Heading[];
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
@@ -50,9 +66,40 @@ export function getPost(slug: string): Post | undefined {
   return getPosts().find((post) => post.slug === slug);
 }
 
-export async function renderMarkdown(source: string): Promise<string> {
-  const file = await unified().use(remarkParse).use(remarkGfm).use(remarkHtml).process(source);
-  return String(file);
+function headingText(node: Root["children"][number]): string {
+  if (node.type === "text") return node.value;
+  if ("children" in node && Array.isArray(node.children)) return node.children.map(headingText).join("");
+  return "";
+}
+
+/**
+ * Collects h2/h3 headings after rehype-slug has assigned ids, so the table of
+ * contents links to exactly the same anchors as the rendered article body.
+ */
+const collectHeadings: Plugin<[Heading[]], Root> = (target) => (tree) => {
+  const visit = (node: Root["children"][number]) => {
+    if (node.type === "element" && (node.tagName === "h2" || node.tagName === "h3")) {
+      const id = typeof node.properties?.id === "string" ? node.properties.id : "";
+      const text = headingText(node).replace(/\s+/g, " ").trim();
+      if (id && text) target.push({ depth: node.tagName === "h2" ? 2 : 3, id, text });
+    }
+    if ("children" in node && Array.isArray(node.children)) node.children.forEach(visit);
+  };
+  tree.children.forEach(visit);
+};
+
+export async function renderMarkdown(source: string): Promise<RenderedMarkdown> {
+  const headings: Heading[] = [];
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(rehypeHighlight, { detect: false })
+    .use(collectHeadings, headings)
+    .use(rehypeStringify)
+    .process(source);
+  return { html: String(file), headings };
 }
 
 export function getAllTags(posts = getPosts()): string[] {

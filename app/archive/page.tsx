@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getPosts } from "../../lib/content";
+
+export const metadata: Metadata = {
+  title: "归档",
+  description: "按年份整理的全部文章列表。",
+  alternates: { canonical: "/archive/" }
+};
 
 export default function ArchivePage() { const posts = getPosts(); const years = Array.from(new Set(posts.map((p) => p.date.slice(0, 4)))); return <div className="page-wrap page-intro max-w-4xl pb-20"><p className="eyebrow">Archive</p><h1>归档</h1><div className="mt-10 space-y-10">{years.map((year) => <section key={year}><h2 className="border-b border-[var(--line)] pb-3 text-2xl font-semibold">{year}</h2><div className="mt-3 space-y-2">{posts.filter((p) => p.date.startsWith(year)).map((post) => <Link className="focus-ring flex items-center justify-between gap-4 rounded-md px-3 py-3 transition hover:bg-[var(--accent-soft)]" href={`/posts/${post.slug}/`} key={post.slug}><span>{post.title}</span><time className="shrink-0 text-xs text-[var(--muted)]">{post.date.slice(5)}</time></Link>)}</div></section>)}</div></div>; }

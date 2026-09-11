@@ -209,6 +209,25 @@ img { display: block; max-width: 100%; }
 .prose pre { overflow-x: auto; border-radius: 8px; padding: 1rem; background: #182829; color: #dce9e3; }
 .prose pre code { padding: 0; background: transparent; color: inherit; }
 .prose blockquote { margin: 1.3rem 0; border-left: 3px solid var(--coral); background: rgba(217,130,104,.1); padding: .8rem 1rem; }
+.prose h2, .prose h3 { scroll-margin-top: 6rem; }
+
+/* Table of contents on post pages. */
+.post-toc { margin-top: 2.5rem; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 1.1rem 1.25rem; }
+.post-toc ol { margin: 0; padding-left: 1.1rem; list-style: decimal; }
+.post-toc li::marker { color: var(--muted); font-size: .8rem; }
+
+/* Code highlighting: tokens are tuned for the always-dark .prose pre surface. */
+.hljs { color: #dce9e3; background: transparent; }
+.hljs-comment, .hljs-quote { color: #7d968f; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-section, .hljs-doctag, .hljs-name { color: #ff9d7a; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta .hljs-string { color: #9fdcb9; }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-variable, .hljs-template-variable, .hljs-selector-attr, .hljs-selector-pseudo { color: #f0cf8e; }
+.hljs-title, .hljs-title.class_, .hljs-title.function_, .hljs-built_in, .hljs-type { color: #8ccfb2; }
+.hljs-attr, .hljs-property, .hljs-params, .hljs-selector-class, .hljs-selector-id { color: #cfe4db; }
+.hljs-meta, .hljs-punctuation { color: #a8bab2; }
+.hljs-deletion { color: #f1a080; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
 
 @keyframes background-crossfade { 0%, 100% { opacity: 0; } 9%, 30% { opacity: .62; } 40%, 66% { opacity: 0; } }
 @keyframes hero-ambient { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.09) translate3d(-.7%, .45%, 0); } }

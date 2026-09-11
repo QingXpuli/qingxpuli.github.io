@@ -16,13 +16,5 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/QingXpuli/new-for-codex",
     cover: "/media/project-codex.svg",
     featured: true
-  },
-  {
-    title: "Limbus Lyric Simulator",
-    summary: "参考桌面歌词演出的视觉灵感，探索歌词、节奏和界面动效。",
-    stack: ["Python", "PyQt", "音频交互"],
-    repoUrl: "https://github.com/YouRanCoder/LimbusLyricSimulator",
-    cover: "/media/project-lyric.svg",
-    featured: true
   }
 ];

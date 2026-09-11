@@ -30,7 +30,9 @@
 - 线上站点：`https://qingxpuli.github.io/`
 - 部署方式：GitHub Pages + GitHub Actions，主分支 `main`
 - Pages 配置：`build_type: workflow`、`cname: null`（无独立域名）、`custom_404: false`、`https_enforced: true`
-- 基线提交与最近部署 run：见文末第 10 节的"本轮提交"记录（本文档所在提交即最新基线）
+- 应用代码基线：`a8b643e feat: add per-page metadata, sitemap, feed and code highlighting`（本轮 P0+P1 加固的最后一个代码提交）
+- 最近成功部署：Actions run `34559733474`（2026-09-11，success），对应 `main` 提交 `60013d3`
+- 推送通道说明：本机 `github.com:443` 持续被重置，`git push` 不可用；本轮通过 `api.github.com` 的 Git Data API 逐字节重放提交（SHA 与原提交完全一致，未产生分叉）。后续如仍无法 push，可沿用同一方式或先启用可用的网络通道。
 
 这是没有仓库路径的 GitHub 个人站点，仓库名必须保持 `qingxpuli.github.io`。
 
@@ -173,7 +175,15 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 | 4 | 依赖与素材治理 | 移除 `zod`/`next-themes`；实现 `tools/optimize-images.mjs`（sharp）；21 个位图转 WebP，`public/` 6.50 MB → 2.10 MB，同步引用与媒体清单 |
 | 5 | 文档 | 本文件与 `README.md` 更新 |
 
-部署：见下方"最近成功部署"。线上探针结果记录在同一次交付说明中。
+部署：Actions run `34559733474` 成功（build 与 deploy 两个 job 均通过），线上核验结果：
+
+- 10 条页面路由 + `/sitemap.xml` + `/feed.xml` + `/robots.txt` + `/404.html` + `/media/gallery/comic-01.webp` + `/media/og-default.png` 全部 `200`；`/posts/does-not-exist/` 返回 `404`
+- 线上 sitemap 10 条 `<url>`，feed 3 条 `<item>`
+- 线上首页含完整 `og:*`（含 1200×630 的 `og:image`）、`twitter:card` 与 `link rel=canonical`；各栏目标题分别为"关于 | …""归档 | …""项目 | …""音乐 | …""照片墙 | …""文章 | …"
+- 线上文章页：`<title>从一页空白开始 | QingXpuli 的小窝</title>`，含 `og:type=article`、`article:published_time`、两个 `article:tag`，正文标题带锚点 `id="为什么做一个个人站点"`
+- 线上相册页：20 个 `.webp` 引用，版权说明存在
+- 线上音乐页：`auto=0` × 3，无自动播放
+- `og-default.png` 实际尺寸 1200×630
 
 ## 11. 剩余待办
 
@@ -185,6 +195,7 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 4. 补充 20 张漫画图的真实作品名与作者，更新 `content/media-credits.json` 的 `author`/`sourceUrl`/`attribution`。
 5. 人工确认 Giscus GitHub App 已安装到本仓库（浏览器打开文章页，若出现 "giscus is not installed on this repository" 则未安装）。
 6. 可选：绑定独立域名并配置 DNS（同时改三处域名常量，见 `README.md`）。
+7. 维护提醒：Actions 运行时报出 "Node.js 20 is deprecated"（`actions/checkout@v4`、`actions/setup-node@v4`、`actions/upload-artifact@v4` 被强制运行在 Node 24 上），建议后续把工作流里的 action 版本升到 v5 系列。
 
 **已知但不在范围内的技术项**：git 历史中的旧大图；`.gitignore` 中失效的 `content/assets-inbox/` 规则；JSON-LD。
 

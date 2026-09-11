@@ -31,8 +31,10 @@
 - 部署方式：GitHub Pages + GitHub Actions，主分支 `main`
 - Pages 配置：`build_type: workflow`、`cname: null`（无独立域名）、`custom_404: false`、`https_enforced: true`
 - 应用代码基线：`a8b643e feat: add per-page metadata, sitemap, feed and code highlighting`（本轮 P0+P1 加固的最后一个代码提交）
-- 最近成功部署：Actions run `34559733474`（2026-09-11，success），对应 `main` 提交 `60013d3`
-- 推送通道说明：本机 `github.com:443` 持续被重置，`git push` 不可用；本轮通过 `api.github.com` 的 Git Data API 逐字节重放提交（SHA 与原提交完全一致，未产生分叉）。后续如仍无法 push，可沿用同一方式或先启用可用的网络通道。
+- 最近成功部署：Actions run `34560717685`（2026-09-11，success，node24 actions），此前 `34559916458`、`34559733474` 亦成功
+- 推送通道状态（本机网络）：`github.com` 的 DNS 结果（如 `20.205.243.166`）被黑洞，`git push` 报 "Failed to connect" 或 "Connection was reset"，但其他 GitHub 边缘 IP 正常，且**可达集合在数秒内变化**。可靠做法是运行 `pwsh -File "C:\Users\typ\Desktop\New for codex\push-github.ps1"`：它先用 `git ls-remote` 逐个探测边缘 IP，再用 `git -c http.curloptResolve=github.com:443:<ip> push` 推送，失败自动换下一个 IP。已验证可用（本轮 `9b096e5..35f3f87` 就是走它推送的），不需要改 hosts、不需要管理员权限。
+- 备用推送通道：`api.github.com` 始终可达，可用 Git Data API 逐字节重放提交（已验证 SHA 与原提交完全一致）。首次推送即用它完成。
+- 长期方案：SSH over 443 —— `ssh.github.com:443` 可以完成 SSH 握手，只需在账号注册 SSH 公钥，然后把远端改成 `ssh://git@ssh.github.com:443/QingXpuli/qingxpuli.github.io.git`；或启用 VPN/代理后直接 `git push`。
 
 这是没有仓库路径的 GitHub 个人站点，仓库名必须保持 `qingxpuli.github.io`。
 
@@ -195,7 +197,8 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 4. 补充 20 张漫画图的真实作品名与作者，更新 `content/media-credits.json` 的 `author`/`sourceUrl`/`attribution`。
 5. 人工确认 Giscus GitHub App 已安装到本仓库（浏览器打开文章页，若出现 "giscus is not installed on this repository" 则未安装）。
 6. 可选：绑定独立域名并配置 DNS（同时改三处域名常量，见 `README.md`）。
-7. 维护提醒：Actions 运行时报出 "Node.js 20 is deprecated"（`actions/checkout@v4`、`actions/setup-node@v4`、`actions/upload-artifact@v4` 被强制运行在 Node 24 上），建议后续把工作流里的 action 版本升到 v5 系列。
+
+**已在本轮顺手处理**：工作流的 Node 20 弃用警告已消除——`actions/checkout@v5`、`actions/setup-node@v5`、`actions/upload-pages-artifact@v5`（内部 pin 到 `upload-artifact` v7）、`actions/deploy-pages@v5`，四者均运行在 node24 上；提交 `35f3f87`，run `34560717685` 成功且警告消失。
 
 **已知但不在范围内的技术项**：git 历史中的旧大图；`.gitignore` 中失效的 `content/assets-inbox/` 规则；JSON-LD。
 

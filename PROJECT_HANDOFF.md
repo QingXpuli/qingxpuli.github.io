@@ -20,7 +20,9 @@
 | 代码高亮 / 文章目录 | 计划包含 | rehype 管线 + `.hljs` 主题；标题自动加锚点，标题 ≥3 时渲染目录 | ✅ 完成（本轮） |
 | 工程卫生 | 无死脚本、无多余依赖 | 死脚本已实现为真实工具；`zod`/`next-themes` 已移除 | ✅ 完成（本轮） |
 | 素材体积 | 可接受的移动端加载 | `public/` 6.50 MB → 2.10 MB | ✅ 完成（本轮） |
-| 真实内容替换 | 真实文章/项目/音频 | 文章 3 篇、项目 2 个、音轨 1 首仍为示例 | 🟡 未开始（P2） |
+| 内容与素材 | 真实文章/项目/音频 | 照片、头像、个人资料已就位；文章与音轨仍为示例 | 🟡 未开始（P2） |
+| 内容工作流 | 新增文章/素材不易出错 | 新增 `npm run new:post` 与 `npm run add:media` 两个脚手架 | ✅ 完成（本轮） |
+| 项目列表准确性 | 只列自己的项目 | 已移除指向他人仓库的 Limbus 条目 | ✅ 完成（本轮） |
 | Giscus 应用安装 | 评论区可用 | 组件与配置就绪，App 安装状态无法用 gh 凭据确认 | ⚠️ 待人工确认 |
 
 ## 1. 项目身份
@@ -76,6 +78,8 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 | `tools/generate-static-meta.mjs` | 生成 sitemap/feed/robots；导出纯函数供单测 |
 | `tools/prepare-pages.mjs` | 404 复制 + 产物门禁 |
 | `tools/optimize-images.mjs` | 手动：WebP 压缩 + 渲染 `og-default.png` |
+| `tools/new-post.mjs` | `npm run new:post`：生成带正确 front matter 的文章，拒绝重复 slug，中文标题回退日期占位 slug |
+| `tools/add-media.mjs` | `npm run add:media`：素材入库，图片转 WebP 并登记 `rights` 等授权字段，含负例校验 |
 | `tools/make-demo-audio.mjs` | 生成演示音轨 |
 
 **为什么 sitemap/RSS 用构建脚本而不是 `app/sitemap.ts` / route handler**：`output: "export"` 下元数据路由与 Route Handler 的构建期支持依赖框架内部行为，而构建期脚本确定、可单测、与本仓库既有 `tools/*.mjs` 模式一致。
@@ -110,7 +114,7 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 | 内容位 | 计划 | 现状 |
 | --- | --- | --- |
 | 文章 | 真实文章 | 3 篇示例（仍是示例，P2） |
-| 项目 | 真实项目 | 2 个示例，其中一个指向他人仓库（P2，建议改为灵感来源或删除） |
+| 项目 | 真实项目 | 1 个示例（`New for Codex`）；指向他人仓库的条目已移除 |
 | 照片 | 本人有权素材 | 1 个相册"喜欢的画面"，20 张第三方漫画图，已获发布许可并如实登记 |
 | 头像 | 本人头像 | `/media/avatar.webp`（1.29 MB → 31 KB） |
 | 音频 / LRC | 本人有权音频 | 仍为 `demo.wav` / `demo.lrc`（P2） |
@@ -191,14 +195,16 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 
 **P2 内容层（需要你提供素材，本轮未做）**
 
-1. 用真实文章替换 `content/posts/` 的 3 篇示例。
-2. 替换 `demo.wav` / `demo.lrc` 与 `content/music.ts` 中的演示音轨。
-3. 修正 `content/projects.ts`：其中一个条目指向他人仓库，建议删除或改标为灵感来源。
-4. 补充 20 张漫画图的真实作品名与作者，更新 `content/media-credits.json` 的 `author`/`sourceUrl`/`attribution`。
-5. 人工确认 Giscus GitHub App 已安装到本仓库（浏览器打开文章页，若出现 "giscus is not installed on this repository" 则未安装）。
-6. 可选：绑定独立域名并配置 DNS（同时改三处域名常量，见 `README.md`）。
+1. 用真实文章替换 `content/posts/` 的 3 篇示例：`npm run new:post -- --title "…" --slug …`。
+2. 替换 `demo.wav` / `demo.lrc` 与 `content/music.ts` 中的演示音轨：`npm run add:media -- --file song.mp3 --kind audio …` 后更新 `content/music.ts`。
+3. 20 张漫画图的真实作品名与作者：你已选择暂不补充，保持"第三方素材（权利方未标注）+ 版权归原作者"的如实登记；日后补来源时更新 `content/media-credits.json` 的 `author`/`sourceUrl`/`attribution`。
+4. 人工确认 Giscus GitHub App 已安装到本仓库（浏览器打开文章页，若出现 "giscus is not installed on this repository" 则未安装，到 <https://github.com/apps/giscus/installations/new> 安装）。
+5. 可选：绑定独立域名并配置 DNS（同时改三处域名常量，见 `README.md`）。
 
-**已在本轮顺手处理**：工作流的 Node 20 弃用警告已消除——`actions/checkout@v5`、`actions/setup-node@v5`、`actions/upload-pages-artifact@v5`（内部 pin 到 `upload-artifact` v7）、`actions/deploy-pages@v5`，四者均运行在 node24 上；提交 `35f3f87`，run `34560717685` 成功且警告消失。
+**已在本轮顺手处理**：
+
+- 工作流的 Node 20 弃用警告已消除——`actions/checkout@v5`、`actions/setup-node@v5`、`actions/upload-pages-artifact@v5`（内部 pin 到 `upload-artifact` v7）、`actions/deploy-pages@v5`，四者均运行在 node24 上；提交 `35f3f87`，run `34560717685` 成功且警告消失。
+- `content/projects.ts` 中指向他人仓库的 Limbus 条目已移除（该项目仍保留在友链中）；`public/media/project-lyric.svg` 仍登记在清单里作为备用素材。
 
 **已知但不在范围内的技术项**：git 历史中的旧大图；`.gitignore` 中失效的 `content/assets-inbox/` 规则；JSON-LD。
 
@@ -210,7 +216,7 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 2. 先运行 `git status --short --branch`，保留用户已有修改；**不要**使用 `git reset --hard` 或 `git checkout --`。
 3. 先读本文件、`README.md` 与相关组件，再决定是否改代码。
 4. 只修改与当前请求有关的文件；不复制参考站点资源。
-5. 新增公开媒体必须登记 `content/media-credits.json` 并如实填写 `rights`；没有明确使用权的素材不得发布。
+5. 新增公开媒体必须登记 `content/media-credits.json` 并如实填写 `rights`；没有明确使用权的素材不得发布。优先用 `npm run add:media` 与 `npm run new:post`，它们会代填字段并做负例校验。
 6. 修改后运行 `npm run typecheck && npm run lint && npm test && npm run verify:media`，构建用 `NEXT_TELEMETRY_DISABLED=1 npm run build`；改动涉及嵌入播放器时确认不引入自动播放。
 7. 只有用户明确要求发布时才推送；发布前确认构建、媒体审计与工作区状态。
 

@@ -38,6 +38,28 @@ NEXT_TELEMETRY_DISABLED=1 npm run build
 
 音频请只使用你有合法使用权的文件。网易云主页与歌单仅嵌入官方外链播放器并跳转，不抓取、不代理第三方音频，页面也不会自动播放。
 
+## 新增文章与素材
+
+两个脚手架命令负责把"写作"和"素材入库"变得不容易出错：
+
+```bash
+# 新建文章（自动写入 front matter，重复 slug 会被拒绝）
+npm run new:post -- --title "文章标题" --slug my-post --tags "随笔,记录" --summary "一句话摘要"
+npm run new:post -- --title "先存草稿" --slug draft-post --draft
+
+# 素材入库（图片自动转 WebP，并登记 media-credits 条目）
+npm run add:media -- --file "C:\photos\me.jpg" --rights owned --author "Qing" \
+  --license "站点所有者本人拍摄" --attribution "Qing 本人照片"
+npm run add:media -- --file "cover.png" --folder gallery --rights authorized \
+  --author "原作者" --license "已获发布许可" --source "https://example.com/source" \
+  --attribution "版权归原作者所有"
+```
+
+- `--slug` 只接受字母、数字与连字符；纯 ASCII 标题会自动生成 slug，中文标题则回退到 `post-<日期>` 占位并提示你指定 `--slug`。
+- `--rights` 必填且必须是 `original` / `owned` / `authorized` 之一；`original` 仅允许站点所有者署名，第三方素材请用 `authorized`。
+- 素材入库后运行 `npm run verify:media` 确认门禁通过，再在 `content/` 里引用新路径。
+- 文章正文里写 `## 标题` 会自动获得锚点；标题达到 3 个时文章页自动显示目录。
+
 ## 媒体授权规则
 
 `content/media-credits.json` 中每个条目都必须包含 `kind`、`path`、`author`、`license`、`sourceUrl`、`attribution`，以及 `rights` 字段：
